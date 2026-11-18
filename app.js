@@ -894,6 +894,7 @@
 
   function renderQuestions() {
     if (recog) { try { recog.stop(); } catch (e) {} }
+    chargerEntete();
     host.innerHTML = "";
     var reponses = rep();
 
@@ -1021,20 +1022,41 @@
   }
 
   var dt = $("#dte"), par = $("#par");
-  var now = new Date();
-  dt.value = store.get("date", now.getFullYear() + "-" +
-             String(now.getMonth() + 1).padStart(2, "0") + "-" +
-             String(now.getDate()).padStart(2, "0"));
-  dt.addEventListener("change", function () { store.set("date", dt.value); });
-  par.value = store.get("par", "");
-  par.addEventListener("input", function () { store.set("par", par.value); });
+  var dates = store.get("dates", {});
+  var pars = store.get("pars", {});
+
+  function aujourdhui() {
+    var n = new Date();
+    return n.getFullYear() + "-" + String(n.getMonth() + 1).padStart(2, "0") +
+           "-" + String(n.getDate()).padStart(2, "0");
+  }
+
+  /* Date du jour et nom vide tant que cet entretien n'a pas été renseigné ;
+     une fois saisis, ils restent attachés au cabinet concerné. */
+  function chargerEntete() {
+    dt.value = dates[cabId] || aujourdhui();
+    par.value = pars[cabId] || "";
+  }
+
+  dt.addEventListener("change", function () {
+    dates[cabId] = dt.value;
+    store.set("dates", dates);
+  });
+  par.addEventListener("input", function () {
+    pars[cabId] = par.value;
+    store.set("pars", pars);
+  });
 
   $("#wipe").addEventListener("click", function () {
     if (!window.confirm("Effacer les réponses saisies pour " + nomCabinet() + " ?")) return;
     toutes[cabId] = {};
     valides[cabId] = {};
+    delete dates[cabId];
+    delete pars[cabId];
     store.set("reponses", toutes);
     store.set("valides", valides);
+    store.set("dates", dates);
+    store.set("pars", pars);
     renderQuestions();
   });
 
