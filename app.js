@@ -159,7 +159,7 @@
 
   var CRITERES = [
     { t: "Honoraires annuels",
-      d: "Montant du forfait de gestion courante, de 2 160 € à 4 300 € TTC.",
+      d: "Montant du forfait de gestion courante, de 2 160 € à 4 200 € TTC.",
       n: { acgp: 5, matcoop: 4, cpi: 3, slp: 1, matpro: 1 },
       j: {
         acgp: "1 800 € HT, soit 2 160 € TTC par an : le forfait le moins cher des quatre.",
@@ -678,10 +678,6 @@
     });
     var txt = el("span");
     txt.appendChild(el("b", null, cr.t));
-    txt.appendChild(document.createElement("br"));
-    var small = el("span", null, cr.d);
-    small.style.cssText = "font-size:.8rem;color:var(--muted)";
-    txt.appendChild(small);
     lab.appendChild(cb); lab.appendChild(txt);
     th.appendChild(lab);
     tr.appendChild(th);
@@ -764,6 +760,7 @@
 
     bulle.appendChild(head);
     bulle.appendChild(el("p", "bp", cr.j[c.id]));
+    bulle.appendChild(el("p", "bd", cr.d));
     bulle.addEventListener("click", function (e) { e.stopPropagation(); });
 
     document.body.appendChild(bulle);
