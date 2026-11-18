@@ -571,35 +571,78 @@
     gf.appendChild(td);
   });
 
-  var rank = $("#rank"), ncrit = $("#ncrit"), expl = $("#expl"), selCell = null;
+  var rank = $("#rank"), ncrit = $("#ncrit");
+  var selCell = null, bulle = null;
+
+  function fermerBulle() {
+    if (bulle) { bulle.remove(); bulle = null; }
+    if (selCell) { selCell.classList.remove("sel"); selCell = null; }
+  }
+
+  function placerBulle() {
+    if (!bulle || !selCell) return;
+    var r = selCell.getBoundingClientRect();
+    var bw = bulle.offsetWidth, bh = bulle.offsetHeight, m = 10;
+
+    var left = r.left + r.width / 2 - bw / 2;
+    left = Math.max(m, Math.min(left, window.innerWidth - bw - m));
+
+    var dessous = true;
+    var top = r.bottom + 10;
+    if (top + bh > window.innerHeight - m) {
+      if (r.top - bh - 10 > m) { top = r.top - bh - 10; dessous = false; }
+      else { top = Math.max(m, window.innerHeight - bh - m); }
+    }
+    bulle.style.left = left + "px";
+    bulle.style.top = top + "px";
+
+    var fx = Math.max(16, Math.min(r.left + r.width / 2 - left, bw - 16));
+    bulle.style.setProperty("--fx", fx + "px");
+    bulle.classList.toggle("haut", !dessous);
+  }
 
   function expliquer(cr, c, v, btn) {
-    if (selCell) selCell.classList.remove("sel");
-    if (selCell === btn) { selCell = null; expl.hidden = true; return; }
-    selCell = btn; btn.classList.add("sel");
+    var memeCase = (selCell === btn);
+    fermerBulle();
+    if (memeCase) return;
 
-    expl.innerHTML = "";
-    var head = el("div", "eh");
+    selCell = btn;
+    btn.classList.add("sel");
+
+    bulle = el("div", "bulle");
+    bulle.setAttribute("role", "dialog");
+    bulle.setAttribute("aria-label", "Justification de la note");
+
+    var head = el("div", "bh");
     head.appendChild(el("span", "cell n" + v, String(v)));
-    var t = el("div");
+    var t = el("div", "bt");
     t.appendChild(el("b", null, c.long));
-    t.appendChild(document.createElement("br"));
-    var sub = el("span", "esub", cr.t + " — note " + v + " sur " + NOTE_MAX);
-    t.appendChild(sub);
+    t.appendChild(el("span", "bsub", cr.t));
     head.appendChild(t);
-    var x = el("button", "ex", "\u00d7");
+    var x = el("button", "bx", "\u00d7");
     x.type = "button";
-    x.setAttribute("aria-label", "Fermer l'explication");
-    x.addEventListener("click", function () {
-      expl.hidden = true;
-      if (selCell) selCell.classList.remove("sel");
-      selCell = null;
-    });
+    x.setAttribute("aria-label", "Fermer");
+    x.addEventListener("click", function (e) { e.stopPropagation(); fermerBulle(); });
     head.appendChild(x);
-    expl.appendChild(head);
-    expl.appendChild(el("p", "ep", cr.j[c.id]));
-    expl.hidden = false;
+
+    bulle.appendChild(head);
+    bulle.appendChild(el("p", "bp", cr.j[c.id]));
+    bulle.addEventListener("click", function (e) { e.stopPropagation(); });
+
+    document.body.appendChild(bulle);
+    placerBulle();
   }
+
+  document.addEventListener("click", function (e) {
+    if (!bulle) return;
+    if (e.target.closest && e.target.closest(".cell")) return;
+    fermerBulle();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") fermerBulle();
+  });
+  window.addEventListener("scroll", placerBulle, true);
+  window.addEventListener("resize", placerBulle);
 
   function scores() {
     var s = {};
