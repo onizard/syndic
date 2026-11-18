@@ -96,7 +96,10 @@ table.grille thead th{background:var(--shade);font-size:.76rem;line-height:1.25}
 table.grille th.crit{text-align:left;font-weight:500;min-width:15rem;max-width:19rem}
 table.grille tbody tr.off{opacity:.38}
 table.grille tbody tr:hover{background:var(--shade)}
-.cell{display:inline-flex;align-items:center;justify-content:center;width:1.9rem;height:1.9rem;border-radius:6px;font-weight:700;font-size:.95rem;font-variant-numeric:tabular-nums}
+.cell{display:inline-flex;align-items:center;justify-content:center;width:1.9rem;height:1.9rem;border-radius:6px;font-weight:700;font-size:.95rem;font-variant-numeric:tabular-nums;border:1px solid transparent;font-family:inherit;padding:0}
+button.cell{cursor:pointer}
+button.cell:hover{border-color:var(--navy)}
+button.cell.sel{border-color:var(--navy);box-shadow:0 0 0 2px var(--navy)}
 .cell.n5{background:rgba(47,107,79,.22);color:var(--ok)}
 .cell.n4{background:rgba(47,107,79,.12);color:var(--ok)}
 .cell.n3{background:var(--shade);color:var(--muted)}
@@ -105,6 +108,17 @@ table.grille tbody tr:hover{background:var(--shade)}
 .cell.n0{background:rgba(142,47,60,.32);color:var(--seal)}
 .legend{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center;font-size:.82rem;color:var(--muted);margin:.2rem 0 1rem}
 .legend span{display:inline-flex;gap:.35rem;align-items:center}
+.expl{margin-top:.8rem;background:var(--surface);border:1px solid var(--navy);border-radius:8px;padding:.85rem 1rem}
+.expl .eh{display:flex;gap:.7rem;align-items:flex-start}
+.expl .eh>div{flex:1 1 auto;min-width:0;line-height:1.35}
+.expl .esub{font-size:.82rem;color:var(--muted)}
+.expl .ex{font:inherit;font-size:1.3rem;line-height:1;cursor:pointer;border:0;background:none;color:var(--muted);padding:0 .2rem}
+.expl .ex:hover{color:var(--ink)}
+.expl .ep{margin:.6rem 0 0;font-size:.92rem;line-height:1.5}
+.neutre{background:var(--shade);border-left:3px solid var(--navy);padding:.9rem 1.05rem;margin:1.2rem 0 1.6rem;font-size:.89rem;line-height:1.55}
+.neutre p{margin:0}
+.neutre p+p{margin-top:.5rem}
+.neutre .lbl{display:block;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;font-weight:700;color:var(--navy);margin-bottom:.35rem}
 td.why{display:none}
 label.crit{display:flex;gap:.5rem;align-items:flex-start;cursor:pointer}
 label.crit input{margin-top:.25rem;flex:0 0 auto}
@@ -198,6 +212,20 @@ footer{margin-top:2.6rem;padding-top:1rem;border-top:1px solid var(--line);font-
   <div class="picker" id="picker"></div>
   <div id="fiche"></div>
 
+  <div class="neutre">
+    <span class="lbl">Comment cette notation a été établie</span>
+    <p>Les notes résultent de la seule comparaison des projets de contrat, critère par
+       critère, sans contact avec les cabinets et sans qu'aucun d'eux en ait connaissance.
+       <b>Aucun membre du conseil syndical n'a d'intérêt, de lien familial ou de relation
+       d'affaires avec l'un des candidats</b>, et aucun n'a été écarté ou favorisé pour
+       une autre raison que ce que son contrat prévoit.</p>
+    <p>Une note basse ne porte pas sur la qualité d'un cabinet : elle constate ce que son
+       contrat prévoit, ou ne prévoit pas, au regard des quatre autres.
+       <b>Chaque note est justifiée : cliquez dessus pour voir sur quoi elle se fonde.</b>
+       Le choix des critères et leur importance relative restent discutables — c'est
+       précisément pourquoi chacun peut les décocher et refaire le calcul à sa main.</p>
+  </div>
+
   <h2>Grille de notation</h2>
   <p class="hint">Treize critères, notés de la même façon pour tous, sur un barème de
      <b>0 à 5 points</b>. Décochez les critères qui ne comptent pas pour vous : le
@@ -211,7 +239,8 @@ footer{margin-top:2.6rem;padding-top:1rem;border-top:1px solid var(--line);font-
     <span><b class="cell n1">1</b> point faible</span>
     <span><b class="cell n0">0</b> rédhibitoire</span>
   </p>
-  <p class="hint"><b>Limite à connaître :</b> un <b>3</b> signifie « correct »
+  <p class="hint"><b>Cliquez sur une note</b> pour afficher ce qui la justifie dans le
+     contrat. <b>Limite à connaître :</b> un <b>3</b> signifie « correct »
      <i>ou</i> « non documenté au contrat ». Un cabinet dont le contrat est moins détaillé
      n'est donc ni récompensé ni pénalisé sur ce point. Les questions posées en entretien
      servent justement à combler ces trous.</p>
@@ -222,6 +251,7 @@ footer{margin-top:2.6rem;padding-top:1rem;border-top:1px solid var(--line);font-
       <tfoot><tr id="gf"></tr></tfoot>
     </table>
   </div>
+  <div class="expl" id="expl" hidden></div>
   <div class="arow" style="margin-top:.8rem">
     <button class="btn" id="allon">Tout cocher</button>
     <button class="btn" id="alloff">Tout décocher</button>
@@ -264,9 +294,9 @@ footer{margin-top:2.6rem;padding-top:1rem;border-top:1px solid var(--line);font-
 </section>
 
 <footer>
-  Document de travail du conseil syndical, établi à partir des projets de contrat
-  communiqués par les cabinets. Il ne constitue pas un conseil juridique.
-  L'ADIL 93 renseigne gratuitement les copropriétaires.
+  Document de travail du conseil syndical, établi à partir des seuls projets de contrat
+  communiqués par les cabinets, sans contact ni intérêt avec aucun d'eux. Il ne constitue
+  pas un conseil juridique. L'ADIL 93 renseigne gratuitement les copropriétaires.
 </footer>
 
 </div>
