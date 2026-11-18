@@ -183,7 +183,9 @@ textarea:focus-visible,button:focus-visible,input:focus-visible{outline:2px soli
 .railq .c{font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;font-size:.9rem}
 .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.8rem;margin-bottom:1.4rem}
 .meta label{display:flex;flex-direction:column;gap:.25rem;font-size:.76rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600;color:var(--muted)}
-.meta input{font:inherit;font-size:.95rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:.5rem .6rem;text-transform:none;letter-spacing:0;font-weight:400}
+.meta input,.meta select{font:inherit;font-size:.95rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:.5rem .6rem;text-transform:none;letter-spacing:0;font-weight:400;width:100%}
+.meta select{cursor:pointer}
+.meta #cabautre{margin-top:.35rem}
 .msg{margin-top:.9rem;font-size:.9rem;padding:.75rem .9rem;border-radius:5px;border:1px solid var(--line);background:var(--shade)}
 .msg.err{border-color:var(--seal);color:var(--seal)}
 .msg.good{border-color:var(--ok);color:var(--ok)}
@@ -277,13 +279,16 @@ footer{margin-top:2.6rem;padding-top:1rem;border-top:1px solid var(--line);font-
 <section id="p-questions" role="tabpanel" aria-labelledby="t-questions" hidden>
 
   <h2>Grille d'entretien</h2>
-  <p class="hint">Sous chaque question figure ce que dit déjà le projet de contrat ACGP de
-     janvier 2025 : l'entretien sert à le confirmer, le préciser ou le faire modifier.
-     Vos réponses sont conservées sur cet appareil ; rien n'est envoyé ailleurs.</p>
+  <p class="hint">Choisissez le cabinet rencontré : les encadrés « ce que dit le
+     contrat » s'adaptent à sa proposition, et vos réponses sont conservées séparément
+     pour chacun. Plusieurs questions portent sur des points qu'aucun contrat ne traite —
+     ce sont celles qui apportent le plus. Tout reste sur cet appareil ; rien n'est envoyé
+     ailleurs.</p>
 
   <div class="meta">
     <label>Cabinet rencontré
-      <input type="text" id="cab" value="ACGP — M. Elric Bourguignon"></label>
+      <select id="cab"></select>
+      <input type="text" id="cabautre" placeholder="Nom du cabinet" hidden></label>
     <label>Date de l'entretien
       <input type="date" id="dte"></label>
     <label>Entretien mené par

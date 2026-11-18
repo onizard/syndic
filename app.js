@@ -309,93 +309,244 @@
       } }
   ];
 
+  var NON_DOC = "Non documenté dans les éléments transmis — c'est précisément l'objet " +
+                "de la question.";
+
   var QUESTIONS = [
-    { g: "A. Disponibilité et suivi au quotidien",
-      q: "Êtes-vous joignable par messagerie écrite, type WhatsApp, sans passer par un " +
-         "appel ? Si oui, quels jours et de quelle heure à quelle heure ? Accepteriez-" +
-         "vous de faire figurer cette disponibilité au contrat, avec un délai de " +
-         "réponse, et de confirmer qu'elle relève du forfait sans facturation horaire ?",
-      c: "Accueil téléphonique le lundi et le mardi de 14 h à 17 h, soit six heures par " +
-         "semaine. Accueil physique le lundi et le mardi de 14 h à 17 h, le jeudi et le " +
-         "vendredi de 9 h à 12 h 30. Aucune mention d'une messagerie écrite, et aucun " +
-         "délai de réponse." },
-    { q: "Aurions-nous un gestionnaire dédié et identifié ? Sur quel délai de réponse à " +
-         "un courriel vous engagez-vous, et acceptez-vous de l'inscrire au contrat ?",
-      c: "Aucun gestionnaire n'est nommé et aucun délai de réponse n'est prévu. Le " +
-         "cabinet est représenté par M. Elric Bourguignon, gérant." },
+  { g: "A. Disponibilité et suivi au quotidien",
+    q: "Êtes-vous joignable par messagerie écrite, type WhatsApp, sans passer par un " +
+       "appel ? Si oui, quels jours et de quelle heure à quelle heure ? Accepteriez-vous " +
+       "de faire figurer cette disponibilité au contrat, avec un délai de réponse, et de " +
+       "confirmer qu'elle relève du forfait sans facturation horaire ?",
+    c: {
+      acgp: "Accueil téléphonique le lundi et le mardi de 14 h à 17 h, soit six heures " +
+            "par semaine ; accueil physique quatre demi-journées. Aucune mention d'une " +
+            "messagerie écrite, aucun délai de réponse.",
+      cpi: "Accueil du lundi au vendredi, 9 h-13 h et 14 h-17 h. Aucune mention d'une " +
+           "messagerie écrite, aucun délai de réponse au contrat.",
+      slp: "Accueil téléphonique le matin uniquement, de 9 h 30 à 12 h 30, fermé le " +
+           "samedi. Rien sur une messagerie écrite ni sur un délai de réponse.",
+      matcoop: "Support par courriel annoncé sous six heures ouvrées en moyenne. " +
+               "<b>Une moyenne annoncée n'est pas un engagement contractuel</b>, et rien " +
+               "ne porte sur une messagerie instantanée.",
+      matpro: "Support par courriel annoncé sous six heures ouvrées en moyenne. " +
+              "<b>Une moyenne annoncée n'est pas un engagement contractuel</b>, et rien " +
+              "ne porte sur une messagerie instantanée."
+    } },
+  { q: "Aurions-nous un gestionnaire dédié et identifié ? Sur quel délai de réponse à un " +
+       "courriel vous engagez-vous, et acceptez-vous de l'inscrire au contrat ?",
+    c: {
+      acgp: "Aucun gestionnaire n'est nommé et aucun délai n'est prévu. Le cabinet est " +
+            "représenté par M. Elric Bourguignon, gérant.",
+      cpi: "Aucun gestionnaire n'est nommé et aucun délai de réponse n'est prévu.",
+      slp: "Aucun gestionnaire n'est nommé et aucun délai de réponse n'est prévu.",
+      matcoop: "Un référent dédié est annoncé, mais il n'est ni nommé ni assorti d'un " +
+               "délai inscrit au contrat.",
+      matpro: "Un référent dédié est annoncé, mais il n'est ni nommé ni assorti d'un " +
+              "délai inscrit au contrat."
+    } },
+  { q: "Combien de copropriétés le gestionnaire qui suivra notre immeuble gère-t-il par " +
+       "ailleurs ? Qui le remplace pendant ses congés ou en cas de départ, et comment en " +
+       "sommes-nous informés ?",
+    c: { def: "Aucun des cinq contrats ne traite ce point. La charge réelle d'un " +
+              "gestionnaire détermine pourtant sa réactivité bien plus sûrement que les " +
+              "horaires d'accueil affichés." } },
 
-    { g: "B. Tarifs et frais hors forfait",
-      q: "Quels frais supplémentaires devons-nous prévoir, notamment pour le suivi des " +
-         "travaux, les dossiers particuliers et les prestations hors forfait ?",
-      c: "Vacation horaire de 66 € TTC avec déplacement, 36 € TTC sans déplacement, " +
-         "132 € TTC hors heures ouvrées. Les interventions d'urgence hors heures " +
-         "ouvrables sont facturées <b>sans majoration</b>. Mise en demeure d'un tiers " +
-         "36 € TTC ; dossier avocat ou huissier 150 € TTC ; carnet d'entretien " +
-         "180 € TTC. En matière de sinistre, la déclaration est au forfait, mais ni le " +
-         "suivi du dossier ni les visites demandées par les copropriétaires ou dans le " +
-         "cadre d'une expertise." },
-    { q: "Quel pourcentage d'honoraires appliquez-vous sur les travaux, et à partir de " +
-         "quels montants décroît-il ?",
-      c: "Le contrat renvoie à un pourcentage dégressif du montant hors taxes, voté à la " +
-         "même assemblée que les travaux. <b>Aucun barème n'y figure</b>, la loi " +
-         "interdisant de le fixer par avance, même à titre indicatif. La question reste " +
-         "donc entière." },
-    { q: "Quel est le coût total TTC d'une assemblée générale extraordinaire, et sous " +
-         "quel délai pouvez-vous l'organiser ?",
-      c: "Forfait de 450 € TTC pour une assemblée de deux heures, dans une plage allant " +
-         "de 10 h à 18 h ; dépassement facturé 132 € TTC de l'heure. <b>Aucun délai " +
-         "d'organisation n'est prévu.</b>" },
-    { q: "Acceptez-vous de supprimer la facturation de 12 € TTC appliquée à l'envoi d'un " +
-         "document déjà présent sur l'intranet ?",
-      c: "Article 7.2.1 : « L'envoi d'éléments dématérialisés présents sur l'intranet " +
-         "feront l'objet d'une facturation de 12,00 € TTC (10,00 € HT). »" },
-    { q: "La révision annuelle de vos honoraires est-elle plafonnée, et sur quel indice " +
-         "est-elle calculée ?",
-      c: "Le forfait est « payable d'avance au début de chaque trimestre » et " +
-         "« révisable chaque année à la date anniversaire ». <b>Ni plafond ni indice ne " +
-         "sont précisés.</b> Matera plafonne sa révision à 5 % par an." },
+  { g: "B. Tarifs et frais hors forfait",
+    q: "Quels frais supplémentaires devons-nous prévoir, notamment pour le suivi des " +
+       "travaux, les dossiers particuliers et les prestations hors forfait ?",
+    c: {
+      acgp: "Vacation horaire de 66 € TTC avec déplacement, 36 € TTC sans déplacement, " +
+            "132 € TTC hors heures ouvrées, <b>sans majoration d'urgence</b>. Mise en " +
+            "demeure d'un tiers 36 € TTC ; dossier avocat ou huissier 150 € TTC ; carnet " +
+            "d'entretien 180 € TTC. Sur un sinistre, la déclaration est au forfait mais " +
+            "ni le suivi du dossier ni les visites d'expertise.",
+      cpi: "108 € TTC de l'heure en heures ouvrables, 180 € TTC en dehors, <b>majorés de " +
+           "50 % en urgence</b>. Sinistres facturés 108 € TTC de l'heure (déplacement, " +
+           "mesures conservatoires, assistance à expertise, suivi de l'assureur). " +
+           "Dossier avocat 180 € TTC ; immatriculation 180 € TTC.",
+      slp: "108 € TTC de l'heure, <b>majorés de 40 % en urgence</b>, soit 151,20 € TTC.",
+      matcoop: "Pas de tarif horaire mais des forfaits à l'acte : assistance travaux " +
+               "300 € TTC, recouvrement des impayés 300 € TTC, dégât des eaux à partir " +
+               "de 400 € TTC, préparation et tenue de l'assemblée à partir de 400 € TTC.",
+      matpro: "Les mêmes prestations sont annoncées en option payante, mais leur tarif " +
+              "n'est pas détaillé dans les éléments transmis."
+    } },
+  { q: "Quel pourcentage d'honoraires appliquez-vous sur les travaux, et à partir de " +
+       "quels montants décroît-il ?",
+    c: {
+      def: "Le contrat renvoie à un pourcentage dégressif du montant hors taxes, voté à " +
+           "la même assemblée que les travaux. <b>Aucun barème n'y figure</b>, la loi " +
+           "interdisant de le fixer par avance, même à titre indicatif.",
+      matcoop: "Le suivi de travaux est annoncé à 0 €, mais « l'assistance travaux » est " +
+               "une option à 300 € TTC. <b>La limite entre les deux reste à préciser.</b>",
+      matpro: "Le suivi de travaux est annoncé à 0 €, mais « l'assistance travaux » est " +
+              "une option payante. <b>La limite entre les deux reste à préciser.</b>"
+    } },
+  { q: "Quel est le coût total TTC d'une assemblée générale extraordinaire, et sous quel " +
+       "délai pouvez-vous l'organiser ?",
+    c: {
+      acgp: "Forfait de 450 € TTC pour deux heures, plage de 10 h à 18 h, dépassement " +
+            "132 € TTC de l'heure. <b>Aucun délai d'organisation n'est prévu.</b>",
+      cpi: "Quatre heures dans une plage allant jusqu'à 22 h : 108 € TTC de l'heure en " +
+           "journée, 180 € TTC en soirée, soit 432 € ou 720 € TTC, plus 0,32 € par " +
+           "photocopie. <b>Aucun délai d'organisation n'est prévu.</b>",
+      slp: "834 € TTC pour une assemblée demandée par un copropriétaire, soit 450 € HT " +
+           "plus 35 € HT par lot principal. <b>Aucun délai d'organisation n'est prévu.</b>",
+      matcoop: "Préparation et tenue en option, à partir de 400 € TTC. Aucun délai prévu.",
+      matpro: NON_DOC
+    } },
+  { q: "Facturez-vous l'envoi d'un document déjà disponible en ligne sur votre " +
+       "plateforme ? Si oui, acceptez-vous d'y renoncer ?",
+    c: {
+      acgp: "Article 7.2.1 : « L'envoi d'éléments dématérialisés présents sur l'intranet " +
+            "feront l'objet d'une facturation de 12,00 € TTC (10,00 € HT). »",
+      cpi: "Le contrat prévoit seulement le remboursement des frais d'affranchissement " +
+           "réellement engagés.",
+      slp: "Le point n'est pas traité dans les éléments transmis.",
+      matcoop: NON_DOC,
+      matpro: NON_DOC
+    } },
+  { q: "La révision annuelle de vos honoraires est-elle plafonnée, et sur quel indice " +
+       "est-elle calculée ?",
+    c: {
+      acgp: "Forfait « payable d'avance au début de chaque trimestre » et « révisable " +
+            "chaque année à la date anniversaire ». <b>Ni plafond ni indice ne sont " +
+            "précisés.</b>",
+      cpi: "Rémunération « révisée chaque année à la date anniversaire et selon les " +
+           "modalités prévues en assemblée générale ». <b>Ni plafond ni indice.</b>",
+      slp: "Le point n'est pas précisé dans les éléments transmis.",
+      matcoop: "Révision annuelle plafonnée à 5 % par an : le seul des cinq à poser une " +
+               "limite écrite.",
+      matpro: "Révision annuelle plafonnée à 5 % par an."
+    } },
 
-    { g: "C. Moyens de contrôle du conseil syndical",
-      q: "Acceptez-vous d'inclure au forfait les deux réunions annuelles avec le conseil " +
-         "syndical ?",
-      c: "Article 7.1.3 : le forfait « pourra expressément inclure » deux réunions avec " +
-         "le conseil syndical d'une heure, dans une plage de 10 h à 16 h. <b>Sans accord " +
-         "exprès, elles ne sont pas comprises</b> et relèvent de la vacation horaire." },
-    { q: "Acceptez-vous de porter les visites périodiques à une heure, avec compte-rendu " +
-         "écrit et en présence du président du conseil syndical ?",
-      c: "Article 7.1.1 : quatre visites par an, « d'une durée minimum de 30 mn, sans " +
-         "rédaction d'un rapport et hors la présence du président du conseil syndical, " +
-         "<b>sauf demande du conseil syndical</b> ». La réserve existe, mais reste à " +
-         "faire acter par écrit." },
-    { q: "Acceptez-vous de chiffrer au contrat les pénalités de retard dues par le " +
-         "syndic ?",
-      c: "Articles 6 et 7 : « (montant fixé par décret) € par jour de retard », déduit " +
-         "de la rémunération annuelle. <b>La mention n'est pas renseignée, la pénalité " +
-         "est donc inapplicable en pratique.</b> CPI Gestion retient 1 € par jour, " +
-         "SLP Copro 15 €." },
+  { g: "C. Moyens de contrôle du conseil syndical",
+    q: "Combien de réunions avec le conseil syndical sont incluses au forfait, de quelle " +
+       "durée, et sur quelle plage horaire ?",
+    c: {
+      acgp: "Article 7.1.3 : le forfait « pourra expressément inclure » deux réunions " +
+            "d'une heure, de 10 h à 16 h. <b>Sans accord exprès, elles ne sont pas " +
+            "comprises</b> et relèvent de la vacation horaire.",
+      cpi: "Deux réunions de deux heures sont incluses au forfait, en heures ouvrables " +
+           "ou non. Toute réunion supplémentaire est facturée 108 ou 180 € TTC de l'heure.",
+      slp: "Le contrat laisse le nombre et la durée à compléter : à faire renseigner " +
+           "avant toute signature.",
+      matcoop: NON_DOC,
+      matpro: NON_DOC
+    } },
+  { q: "Quelle est la durée de vos visites périodiques, donnent-elles lieu à un " +
+       "compte-rendu écrit, et se font-elles en présence du président du conseil " +
+       "syndical ?",
+    c: {
+      acgp: "Article 7.1.1 : quatre visites par an, « d'une durée minimum de 30 mn, sans " +
+            "rédaction d'un rapport et hors la présence du président du conseil " +
+            "syndical, <b>sauf demande du conseil syndical</b> ». La réserve existe, " +
+            "mais reste à faire acter par écrit.",
+      cpi: "Deux visites d'une durée minimum d'une heure, <b>en présence du président du " +
+           "conseil syndical</b>. Le compte-rendu reste à confirmer.",
+      slp: "Deux visites d'une heure, mais les mentions « avec ou sans rapport » et « en " +
+           "présence ou non du président » sont <b>laissées en blanc</b> : à faire " +
+           "compléter avant signature.",
+      matcoop: "Aucun engagement de visite sur site n'est documenté : le suivi matériel " +
+               "repose sur le conseil syndical lui-même.",
+      matpro: "Aucun engagement de visite sur site n'est documenté dans les éléments " +
+              "transmis."
+    } },
+  { q: "Acceptez-vous de chiffrer au contrat les pénalités de retard dues par le syndic ?",
+    c: {
+      acgp: "« (montant fixé par décret) € par jour de retard », déduit de la " +
+            "rémunération. <b>La mention n'est pas renseignée, la pénalité est " +
+            "inapplicable.</b>",
+      cpi: "1 € par jour de retard, déduit de la rémunération : chiffré, donc " +
+           "applicable, mais peu dissuasif.",
+      slp: "15 € par jour de retard : le montant le plus dissuasif des cinq.",
+      matcoop: "Aucune pénalité chiffrée dans les éléments transmis.",
+      matpro: "Aucune pénalité chiffrée dans les éléments transmis."
+    } },
+  { q: "Que voient exactement les copropriétaires et le conseil syndical sur votre " +
+       "espace en ligne ? Les écritures comptables y sont-elles consultables en temps " +
+       "réel, et les pièces justificatives y figurent-elles ?",
+    c: {
+      acgp: "Un intranet existe, puisque l'envoi d'un document qui s'y trouve est " +
+            "facturé 12 € TTC. <b>Son contenu n'est pas décrit.</b>",
+      cpi: "Un accès en ligne sécurisé aux documents dématérialisés est prévu ; " +
+           "l'assemblée peut en dispenser le syndic contre une réduction de 96 € TTC. " +
+           "Le contenu n'est pas décrit.",
+      slp: "Un accès en ligne est prévu et l'assemblée peut en dispenser le syndic. " +
+           "Le contenu n'est pas décrit.",
+      matcoop: "Plateforme et application mobile accessibles à tous les copropriétaires. " +
+               "Le détail de ce qui y est visible reste à vérifier en démonstration.",
+      matpro: "Plateforme et application mobile accessibles à tous les copropriétaires. " +
+              "Le détail de ce qui y est visible reste à vérifier en démonstration."
+    } },
+  { q: "Percevez-vous des commissions, remises ou rémunérations de la part des " +
+       "fournisseurs, prestataires ou assureurs de la copropriété ? Avez-vous des " +
+       "sociétés liées susceptibles d'intervenir sur l'immeuble ? Acceptez-vous de vous " +
+       "y engager par écrit au contrat ?",
+    c: {
+      acgp: "<b>Le contrat ne comporte aucun engagement sur ce point.</b>",
+      cpi: "Clause « Concurrence – Éthique » : engagement à ne percevoir aucune " +
+           "commission, à déclarer ses filiales et à mettre les fournisseurs en " +
+           "concurrence avec le conseil syndical. <b>Unique parmi les cinq.</b>",
+      slp: "<b>Le contrat ne comporte aucun engagement sur ce point.</b>",
+      matcoop: NON_DOC,
+      matpro: NON_DOC
+    } },
 
-    { g: "D. Reprise du dossier et conditions d'entrée",
-      q: "Comment comptez-vous obtenir les archives, les documents et les fonds que le " +
-         "précédent syndic refuse de transmettre ? Dans quel délai, et à quel coût pour " +
-         "la copropriété ?",
-      c: "<b>Le contrat ne prévoit rien sur ce point.</b> L'article 18-2 de la loi du " +
-         "10 juillet 1965 impose cette remise sous quinze jours, un mois puis deux " +
-         "mois ; à défaut, le syndic nouvellement désigné ou le président du conseil " +
-         "syndical peut saisir le juge des référés pour l'obtenir sous astreinte." },
-    { q: "Quels honoraires prévoyez-vous pour la reprise du dossier en l'état et de la " +
-         "comptabilité des exercices non approuvés ? Pouvez-vous en donner une " +
-         "estimation en heures, et accepteriez-vous un forfait plafonné inscrit au " +
-         "contrat plutôt qu'une facturation au temps passé ?",
-      c: "« Vacation horaire », soit 66 € TTC de l'heure avec déplacement et 36 € TTC " +
-         "sans déplacement, <b>sans plafond</b>. Les comptes 2025 ne sont pas approuvés " +
-         "et les archives ne sont pas transmises : le volume d'heures est aujourd'hui " +
-         "inconnu. CPI Gestion et SLP Copro facturent cette reprise 108 € TTC de " +
-         "l'heure, également sans plafond." },
-    { q: "Confirmez-vous le montant de 2 160 € TTC par an, et quelles dates de prise " +
-         "d'effet et de fin proposez-vous pour les douze mois du contrat ?",
-      c: "1 800,00 € hors taxes, soit 2 160,00 € toutes taxes comprises, payables " +
-         "d'avance au début de chaque trimestre. Durée de douze mois. <b>Le contrat " +
-         "porte la mention « 2025 » et laisse les dates en blanc.</b>" }
+  { g: "D. Reprise du dossier et conditions d'entrée",
+    q: "Comment comptez-vous obtenir les archives, les documents et les fonds que le " +
+       "précédent syndic refuse de transmettre ? Dans quel délai, et à quel coût pour la " +
+       "copropriété ?",
+    c: { def: "<b>Aucun des contrats ne prévoit quoi que ce soit sur ce point.</b> " +
+              "L'article 18-2 de la loi du 10 juillet 1965 impose cette remise sous " +
+              "quinze jours, un mois puis deux mois ; à défaut, le syndic nouvellement " +
+              "désigné ou le président du conseil syndical peut saisir le juge des " +
+              "référés pour l'obtenir sous astreinte." } },
+  { q: "Quels honoraires prévoyez-vous pour la reprise du dossier en l'état et de la " +
+       "comptabilité des exercices non approuvés ? Pouvez-vous en donner une estimation " +
+       "en heures, et accepteriez-vous un forfait plafonné inscrit au contrat plutôt " +
+       "qu'une facturation au temps passé ?",
+    c: {
+      acgp: "« Vacation horaire », soit 66 € TTC de l'heure avec déplacement et 36 € TTC " +
+            "sans, <b>sans plafond</b>. Les comptes 2025 ne sont pas approuvés et les " +
+            "archives ne sont pas transmises : le volume d'heures est inconnu.",
+      cpi: "108 € TTC de l'heure, <b>sans plafond</b>. Vingt heures de reprise " +
+           "représenteraient 2 160 € TTC.",
+      slp: "108 € TTC de l'heure par renvoi à l'article 7.2.1, <b>sans plafond</b>.",
+      matcoop: NON_DOC,
+      matpro: NON_DOC
+    } },
+  { q: "Pouvez-vous nous communiquer votre attestation de garantie financière en cours " +
+       "de validité, votre attestation de responsabilité civile professionnelle, et deux " +
+       "références de copropriétés de taille comparable que nous puissions contacter ?",
+    c: {
+      acgp: "Garantie financière de 1 000 000 € auprès de la SEGAP, responsabilité " +
+            "civile auprès des Lloyd's souscrite le 01/01/2025, carte professionnelle " +
+            "délivrée le 24/09/2023. <b>Aucune référence n'est fournie.</b>",
+      cpi: "Société récente, carte professionnelle de 2024. <b>L'attestation de garantie " +
+           "financière en cours de validité n'est pas jointe</b>, et aucune référence " +
+           "n'est fournie.",
+      slp: "Garantie financière GALIAN de 920 000 €, responsabilité civile GALIAN-MMA " +
+           "police n° 120 137 405. <b>La date de la carte professionnelle diffère entre " +
+           "le contrat et la fiche d'information</b> : à faire corriger.",
+      matcoop: "Assurance responsabilité civile des membres du conseil syndical de 9 M€ " +
+               "incluse (AXA). Les attestations propres à Matera restent à produire.",
+      matpro: "Les attestations restent à produire."
+    } },
+  { q: "Confirmez-vous le montant annuel de vos honoraires, et quelles dates de prise " +
+       "d'effet et de fin proposez-vous ?",
+    c: {
+      acgp: "1 800,00 € HT, soit 2 160,00 € TTC, payables d'avance au début de chaque " +
+            "trimestre. Durée de douze mois. <b>Le contrat porte la mention « 2025 » et " +
+            "laisse les dates en blanc.</b>",
+      cpi: "2 650,00 € HT, soit 3 180,00 € TTC, payables d'avance au début de chaque " +
+           "trimestre. <b>Les dates sont laissées en blanc.</b>",
+      slp: "3 500,00 € HT, soit 4 200,00 € TTC. <b>Les dates sont à renseigner.</b>",
+      matcoop: "2 480 € TTC par an, plus 200 € TTC de frais de mise en place la première " +
+               "année.",
+      matpro: "4 300 € TTC par an."
+    } }
   ];
 
   /* =================== OUTILS =================== */
@@ -706,79 +857,139 @@
   /* =================== QUESTIONS =================== */
 
   var host = $("#questions");
-  var reponses = store.get("reponses", {});
-  var valides = store.get("valides", {});
+  var cabSel = $("#cab"), cabAutre = $("#cabautre");
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   var recog = null, recIndex = -1;
 
-  QUESTIONS.forEach(function (q, i) {
-    if (q.g) {
-      var h2 = el("h2", null, q.g);
-      h2.style.cssText = "font-size:1.1rem;margin-top:2rem";
-      host.appendChild(h2);
-    }
+  CABINETS.forEach(function (c) {
+    var o = document.createElement("option");
+    o.value = c.id;
+    o.textContent = c.long;
+    cabSel.appendChild(o);
+  });
+  var oAutre = document.createElement("option");
+  oAutre.value = "autre";
+  oAutre.textContent = "Autre cabinet…";
+  cabSel.appendChild(oAutre);
 
-    var card = el("div", "q");
-    card.dataset.i = String(i);
+  var cabId = store.get("cabinet", "acgp");
+  if (!CABINETS.some(function (c) { return c.id === cabId; }) && cabId !== "autre") {
+    cabId = "acgp";
+  }
+  cabSel.value = cabId;
+  cabAutre.value = store.get("cabinetAutre", "");
+  cabAutre.hidden = (cabId !== "autre");
 
-    var qh = el("div", "qh");
-    qh.appendChild(el("div", "n", String(i + 1)));
-    qh.appendChild(el("div", "qt", q.q));
-    card.appendChild(qh);
+  function cabCourant() {
+    return CABINETS.filter(function (c) { return c.id === cabId; })[0] || null;
+  }
+  function nomCabinet() {
+    var c = cabCourant();
+    return c ? c.long : (cabAutre.value.trim() || "Cabinet non précisé");
+  }
 
-    var ctr = el("div", "ctr");
-    ctr.appendChild(el("span", "lbl", "Ce que dit le contrat"));
-    var cs = el("span");
-    cs.innerHTML = q.c;
-    ctr.appendChild(cs);
-    card.appendChild(ctr);
+  /* réponses rangées par cabinet : { acgp: {0: "...", …}, cpi: {…} } */
+  var toutes = store.get("reponses", {});
+  var valides = store.get("valides", {});
+  if (Object.keys(toutes).some(function (k) { return /^\d+$/.test(k); })) {
+    toutes = { acgp: toutes };          // reprise de l'ancien format
+    store.set("reponses", toutes);
+  }
+  function rep() {
+    if (!toutes[cabId]) toutes[cabId] = {};
+    return toutes[cabId];
+  }
+  function val() {
+    if (!valides[cabId]) valides[cabId] = {};
+    return valides[cabId];
+  }
 
-    var ans = el("div", "ans");
-    var ta = document.createElement("textarea");
-    ta.id = "a" + i;
-    ta.placeholder = "Réponse donnée en entretien…";
-    ta.value = reponses[i] || "";
-    ta.addEventListener("input", function () {
-      reponses[i] = ta.value;
-      store.set("reponses", reponses);
-      refreshProgress();
+  function texteContrat(q) {
+    if (typeof q.c === "string") return q.c;
+    return q.c[cabId] || q.c.def || NON_DOC;
+  }
+
+  function renderQuestions() {
+    if (recog) { try { recog.stop(); } catch (e) {} }
+    host.innerHTML = "";
+    var reponses = rep();
+
+    QUESTIONS.forEach(function (q, i) {
+      if (q.g) {
+        var h2 = el("h2", null, q.g);
+        h2.style.cssText = "font-size:1.1rem;margin-top:2rem";
+        host.appendChild(h2);
+      }
+
+      var card = el("div", "q");
+      var qh = el("div", "qh");
+      qh.appendChild(el("div", "n", String(i + 1)));
+      qh.appendChild(el("div", "qt", q.q));
+      card.appendChild(qh);
+
+      var ctr = el("div", "ctr");
+      ctr.appendChild(el("span", "lbl", "Ce que dit le contrat — " + nomCabinet()));
+      var cs = el("span");
+      cs.innerHTML = texteContrat(q);
+      ctr.appendChild(cs);
+      card.appendChild(ctr);
+
+      var ans = el("div", "ans");
+      var ta = document.createElement("textarea");
+      ta.id = "a" + i;
+      ta.placeholder = "Réponse donnée en entretien…";
+      ta.value = reponses[i] || "";
+      ta.addEventListener("input", function () {
+        reponses[i] = ta.value;
+        store.set("reponses", toutes);
+        refreshProgress();
+      });
+      ans.appendChild(ta);
+
+      var row = el("div", "arow");
+      if (SR) {
+        var mic = el("button", "btn mic");
+        mic.type = "button";
+        mic.innerHTML = "&#127908; Dicter";
+        mic.addEventListener("click", function () { toggleDictee(i, mic, ta); });
+        row.appendChild(mic);
+      }
+
+      var vb = el("button");
+      vb.type = "button";
+      function peindre() {
+        var fait = !!val()[i];
+        card.classList.toggle("done", fait);
+        vb.className = "btn" + (fait ? " ok" : "");
+        vb.textContent = fait ? "\u2713 Validée" : "Valider la réponse";
+      }
+      vb.addEventListener("click", function () {
+        val()[i] = !val()[i];
+        store.set("valides", valides);
+        peindre();
+      });
+      peindre();
+      row.appendChild(vb);
+
+      ans.appendChild(row);
+      card.appendChild(ans);
+      host.appendChild(card);
     });
-    ans.appendChild(ta);
 
-    var row = el("div", "arow");
+    refreshProgress();
+  }
 
-    if (SR) {
-      var mic = el("button", "btn mic");
-      mic.type = "button";
-      mic.innerHTML = "&#127908; Dicter";
-      mic.addEventListener("click", function () { toggleDictee(i, mic, ta); });
-      row.appendChild(mic);
-    }
-
-    var vb = el("button", "btn");
-    vb.type = "button";
-    vb.addEventListener("click", function () {
-      valides[i] = !valides[i];
-      store.set("valides", valides);
-      paint();
-      refreshProgress();
+  cabSel.addEventListener("change", function () {
+    cabId = cabSel.value;
+    store.set("cabinet", cabId);
+    cabAutre.hidden = (cabId !== "autre");
+    renderQuestions();
+  });
+  cabAutre.addEventListener("input", function () {
+    store.set("cabinetAutre", cabAutre.value);
+    Array.prototype.forEach.call(host.querySelectorAll(".ctr .lbl"), function (l) {
+      l.textContent = "Ce que dit le contrat — " + nomCabinet();
     });
-    row.appendChild(vb);
-
-    var st = el("span", "state");
-    row.appendChild(st);
-    ans.appendChild(row);
-    card.appendChild(ans);
-    host.appendChild(card);
-
-    function paint() {
-      var done = !!valides[i];
-      card.classList.toggle("done", done);
-      vb.className = "btn" + (done ? " ok" : "");
-      vb.textContent = done ? "✓ Validée" : "Valider la réponse";
-      st.textContent = done ? "" : "";
-    }
-    paint();
   });
 
   function toggleDictee(i, btn, ta) {
@@ -802,8 +1013,8 @@
         else tmp += e.results[k][0].transcript;
       }
       ta.value = base + fin + tmp;
-      reponses[i] = ta.value;
-      store.set("reponses", reponses);
+      rep()[i] = ta.value;
+      store.set("reponses", toutes);
       refreshProgress();
     };
     recog.onerror = function () { stopDictee(btn); };
@@ -820,46 +1031,31 @@
 
   var qfill = $("#qfill"), qcount = $("#qcount");
   function refreshProgress() {
-    var n = 0;
-    QUESTIONS.forEach(function (q, i) {
-      if ((reponses[i] || "").trim()) n++;
-    });
+    var r = rep(), n = 0;
+    QUESTIONS.forEach(function (q, i) { if ((r[i] || "").trim()) n++; });
     qcount.textContent = n + " / " + QUESTIONS.length;
     qfill.style.width = (n / QUESTIONS.length * 100) + "%";
   }
 
-  var dt = $("#dte");
+  var dt = $("#dte"), par = $("#par");
   var now = new Date();
   dt.value = store.get("date", now.getFullYear() + "-" +
              String(now.getMonth() + 1).padStart(2, "0") + "-" +
              String(now.getDate()).padStart(2, "0"));
   dt.addEventListener("change", function () { store.set("date", dt.value); });
-
-  var cab = $("#cab"), par = $("#par");
-  cab.value = store.get("cabinet", cab.value);
   par.value = store.get("par", "");
-  cab.addEventListener("input", function () { store.set("cabinet", cab.value); });
   par.addEventListener("input", function () { store.set("par", par.value); });
 
   $("#wipe").addEventListener("click", function () {
-    if (!window.confirm("Effacer toutes les réponses saisies ?")) return;
-    reponses = {}; valides = {};
-    store.del("reponses"); store.del("valides");
-    QUESTIONS.forEach(function (q, i) {
-      var ta = document.getElementById("a" + i);
-      if (ta) ta.value = "";
-    });
-    Array.prototype.forEach.call(host.querySelectorAll(".q"), function (c) {
-      c.classList.remove("done");
-      var b = c.querySelectorAll("button");
-      var vb = b[b.length - 1];
-      vb.className = "btn";
-      vb.textContent = "Valider la réponse";
-    });
-    refreshProgress();
+    if (!window.confirm("Effacer les réponses saisies pour " + nomCabinet() + " ?")) return;
+    toutes[cabId] = {};
+    valides[cabId] = {};
+    store.set("reponses", toutes);
+    store.set("valides", valides);
+    renderQuestions();
   });
 
-  refreshProgress();
+  renderQuestions();
 
   /* =================== PDF =================== */
 
@@ -879,6 +1075,7 @@
   $("#dl").addEventListener("click", function () {
     if (!window.jspdf) { say("err", "Le générateur de PDF n'a pas pu être chargé. Vérifiez votre connexion et rechargez la page."); return; }
 
+    var reponses = rep();
     var manq = 0;
     QUESTIONS.forEach(function (q, i) { if (!(reponses[i] || "").trim()) manq++; });
 
@@ -906,7 +1103,7 @@
     doc.setDrawColor(31, 59, 92); doc.setLineWidth(0.7);
     doc.line(L, y, R, y); y += 6;
 
-    put("Cabinet rencontre : " + (cab.value || "—"), 10, "normal", [60]);
+    put("Cabinet rencontre : " + nomCabinet(), 10, "normal", [60]);
     put("Date de l'entretien : " + (frDate(dt.value) || "—") +
         (par.value ? "     Entretien mene par : " + par.value : ""), 10, "normal", [60]);
     y += 4;
@@ -926,7 +1123,7 @@
       ensure(20);
       put(String(i + 1) + ". " + q.q, 10, "bold", [31, 59, 92]);
       y += 0.5;
-      put("Au contrat : " + stripTags(q.c), 8, "italic", [120], 3);
+      put("Au contrat : " + stripTags(texteContrat(q)), 8, "italic", [120], 3);
       y += 1.5;
 
       var rep = (reponses[i] || "").trim();
@@ -951,7 +1148,7 @@
                105, 287, { align: "center" });
     }
 
-    var slug = (cab.value || "syndic").replace(/[^A-Za-z0-9 ]/g, "").trim()
+    var slug = nomCabinet().replace(/[^A-Za-z0-9 ]/g, "").trim()
                .replace(/\s+/g, "-") || "syndic";
     doc.save("Entretien-" + slug + "-" + (dt.value || "") + ".pdf");
 
