@@ -171,45 +171,51 @@
 
   /* Grille : douze critères notés de la même façon pour tous.
      Ordre des notes : acgp, matcoop, cpi, slp, matpro */
+  var NOTE_MAX = 5;
+
   var CRITERES = [
-    { t: "Honoraires annuels", d: "Montant du forfait de gestion courante.",
-      n: { acgp: 1, matcoop: 1, cpi: 0, slp: -1, matpro: -1 } },
+    { t: "Honoraires annuels",
+      d: "Montant du forfait de gestion courante, de 2 160 € à 4 300 € TTC.",
+      n: { acgp: 5, matcoop: 4, cpi: 3, slp: 1, matpro: 1 } },
     { t: "Coût horaire des interventions hors forfait",
-      d: "Tarif appliqué au temps passé en heures ouvrables.",
-      n: { acgp: 1, matcoop: 0, cpi: -1, slp: -1, matpro: 0 } },
+      d: "Tarif appliqué au temps passé : 66 € chez ACGP, 108 € chez CPI et SLP, " +
+         "forfaits à l'acte chez Matera.",
+      n: { acgp: 5, matcoop: 3, cpi: 2, slp: 2, matpro: 3 } },
     { t: "Urgences et sinistres",
-      d: "Majoration appliquée à une intervention urgente hors heures ouvrables.",
-      n: { acgp: 1, matcoop: 0, cpi: -1, slp: -1, matpro: 0 } },
+      d: "Majoration appliquée hors heures ouvrables : aucune chez ACGP, +50 % chez CPI, " +
+         "+40 % chez SLP.",
+      n: { acgp: 5, matcoop: 2, cpi: 1, slp: 2, matpro: 2 } },
     { t: "Joignabilité et délai de réponse",
       d: "Amplitude de l'accueil et engagement écrit sur les délais.",
-      n: { acgp: -1, matcoop: 1, cpi: 0, slp: -1, matpro: 1 } },
+      n: { acgp: 1, matcoop: 5, cpi: 3, slp: 2, matpro: 5 } },
     { t: "Moyens de contrôle du conseil syndical",
       d: "Durée des visites, rapport écrit, présence du président, réunions incluses.",
-      n: { acgp: -1, matcoop: 1, cpi: 1, slp: 0, matpro: 0 } },
+      n: { acgp: 2, matcoop: 5, cpi: 5, slp: 3, matpro: 3 } },
     { t: "Pénalités de retard dues par le syndic",
       d: "Montant chiffré au contrat et donc réellement applicable.",
-      n: { acgp: -1, matcoop: 0, cpi: 0, slp: 1, matpro: 0 } },
+      n: { acgp: 1, matcoop: 2, cpi: 3, slp: 5, matpro: 2 } },
     { t: "Frais de mutation imputés aux copropriétaires",
       d: "État daté, opposition sur mutation, certificat article 20-II.",
-      n: { acgp: 0, matcoop: 1, cpi: -1, slp: 1, matpro: 1 } },
+      n: { acgp: 2, matcoop: 5, cpi: 1, slp: 4, matpro: 5 } },
     { t: "Coût d'une assemblée générale supplémentaire",
       d: "Forfait ou temps passé pour une assemblée hors assemblée annuelle.",
-      n: { acgp: 1, matcoop: -1, cpi: 0, slp: -1, matpro: 0 } },
+      n: { acgp: 5, matcoop: 4, cpi: 3, slp: 1, matpro: 3 } },
     { t: "Coût de reprise du dossier",
-      d: "Reprise de la comptabilité des exercices non approuvés, dossier Bridou compris.",
-      n: { acgp: 1, matcoop: 0, cpi: -1, slp: -1, matpro: 0 } },
+      d: "Reprise de la comptabilité des exercices non approuvés, dossier Bridou compris. " +
+         "Aucun cabinet ne la plafonne.",
+      n: { acgp: 4, matcoop: 3, cpi: 2, slp: 2, matpro: 3 } },
     { t: "Transparence et engagements éthiques",
       d: "Absence de commissions, déclaration des filiales, frais inclus.",
-      n: { acgp: 0, matcoop: 1, cpi: 1, slp: 0, matpro: 1 } },
+      n: { acgp: 3, matcoop: 4, cpi: 5, slp: 3, matpro: 4 } },
     { t: "Solidité de la structure",
       d: "Ancienneté, garantie financière, cohérence des pièces fournies.",
-      n: { acgp: 0, matcoop: 1, cpi: -1, slp: 0, matpro: 1 } },
+      n: { acgp: 3, matcoop: 5, cpi: 2, slp: 3, matpro: 5 } },
     { t: "Simplicité de mise en œuvre",
       d: "Ce qu'il faut voter et mobiliser pour que la formule fonctionne.",
-      n: { acgp: 1, matcoop: -1, cpi: 1, slp: 1, matpro: 1 } },
+      n: { acgp: 5, matcoop: 1, cpi: 4, slp: 4, matpro: 4 } },
     { t: "Rapport entre le prix et les prestations incluses",
       d: "Ce que le forfait couvre réellement au regard de son montant.",
-      n: { acgp: 1, matcoop: 1, cpi: 0, slp: -1, matpro: -1 } }
+      n: { acgp: 5, matcoop: 5, cpi: 4, slp: 2, matpro: 1 } }
   ];
 
   var QUESTIONS = [
@@ -455,8 +461,8 @@
     CABINETS.forEach(function (c) {
       var v = cr.n[c.id];
       var td = el("td");
-      var sp = el("span", "cell " + (v > 0 ? "p" : v < 0 ? "n" : "z"),
-                  v > 0 ? "+1" : v < 0 ? "−1" : "0");
+      var sp = el("span", "cell n" + v, String(v));
+      sp.title = cr.t + " — " + c.nom + " : " + v + " sur " + NOTE_MAX;
       td.appendChild(sp);
       tr.appendChild(td);
     });
@@ -487,37 +493,34 @@
   function recompute() {
     var s = scores();
     var n = actifs.filter(Boolean).length;
+    var max = n * NOTE_MAX;
     ncrit.textContent = n + " critère" + (n > 1 ? "s" : "") + " sur " +
-                        CRITERES.length + " pris en compte";
+                        CRITERES.length + " pris en compte — total possible " +
+                        max + " points";
 
     Array.prototype.forEach.call(gb.children, function (tr) {
       tr.classList.toggle("off", !actifs[Number(tr.dataset.i)]);
     });
     Array.prototype.forEach.call(gf.children, function (td) {
       if (!td.dataset.id) return;
-      var v = s[td.dataset.id];
-      td.textContent = (v > 0 ? "+" : "") + v;
-      td.style.color = v > 0 ? "var(--ok)" : v < 0 ? "var(--seal)" : "var(--muted)";
+      td.textContent = max ? s[td.dataset.id] + " / " + max : "—";
     });
 
-    var max = Math.max(1, n);
     var tri = CABINETS.slice().sort(function (a, b) {
       return s[b.id] - s[a.id] || a.prix - b.prix;
     });
     rank.innerHTML = "";
     tri.forEach(function (c) {
       var v = s[c.id];
+      var pct = max ? Math.round(v / max * 100) : 0;
       var row = el("div", "rk");
       row.appendChild(el("div", "nm", c.nom));
       var tr = el("div", "tr");
-      var i2 = el("i", v >= 0 ? "p" : "n");
-      var half = 50;
-      var w = Math.abs(v) / max * 50;
-      i2.style.width = w + "%";
-      i2.style.left = v >= 0 ? half + "%" : (half - w) + "%";
+      var i2 = el("i", pct >= 70 ? "hi" : pct >= 50 ? "mid" : "lo");
+      i2.style.width = pct + "%";
       tr.appendChild(i2);
       row.appendChild(tr);
-      row.appendChild(el("div", "sc", (v > 0 ? "+" : "") + v));
+      row.appendChild(el("div", "sc", max ? v + " / " + max : "—"));
       rank.appendChild(row);
     });
   }
