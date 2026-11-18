@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Spectral:wght@500;600&display=swap">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 <style>
 :root{
   --paper:#FAF8F4; --surface:#FFFFFF; --ink:#1B1F23; --muted:#5D6873;
@@ -43,16 +42,6 @@ header{padding-block:2rem 1.1rem}
 h1{font-family:var(--font-display);font-weight:600;font-size:clamp(1.6rem,5vw,2.2rem);line-height:1.15;margin:0;text-wrap:balance}
 header p{color:var(--muted);font-size:.95rem;margin:.6rem 0 0;max-width:46rem}
 
-nav{
-  display:flex;gap:.4rem;border-bottom:2px solid var(--line);margin-bottom:1.6rem;
-  position:sticky;top:0;background:var(--paper);z-index:20;padding-top:.5rem;flex-wrap:wrap;
-}
-nav button{
-  font:inherit;font-weight:600;font-size:.95rem;cursor:pointer;border:0;background:none;
-  color:var(--muted);padding:.6rem .9rem;border-bottom:3px solid transparent;margin-bottom:-2px;
-}
-nav button[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--navy)}
-nav button:hover{color:var(--ink)}
 
 h2{font-family:var(--font-display);font-weight:600;font-size:1.3rem;margin:2rem 0 .3rem;text-wrap:balance}
 h2:first-of-type{margin-top:0}
@@ -148,49 +137,7 @@ tfoot .tot{font-variant-numeric:tabular-nums;font-size:1.05rem}
 .rk .tr i.hi{background:var(--ok)} .rk .tr i.mid{background:var(--accent)} .rk .tr i.lo{background:var(--seal)}
 .rk .sc{font-weight:700;font-variant-numeric:tabular-nums;min-width:4.2rem;text-align:right}
 
-/* ---- questions ---- */
-.q{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin-bottom:1.1rem;overflow:hidden}
-.q.done{border-color:var(--ok)}
-.q .qh{padding:.9rem 1.05rem .7rem;display:flex;gap:.7rem;align-items:flex-start}
-.q .n{flex:0 0 auto;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center}
-.q.done .n{background:var(--ok)}
-.q .qt{font-size:.98rem;line-height:1.45;min-width:0}
-.ctr{background:var(--shade);border-left:3px solid var(--navy);margin:0 1.05rem;padding:.6rem .8rem;font-size:.85rem;line-height:1.45;color:var(--muted)}
-.ctr b{color:var(--ink)}
-.ctr .lbl{display:block;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;font-weight:700;color:var(--navy);margin-bottom:.2rem}
-.ans{padding:.8rem 1.05rem 1rem}
-textarea{
-  font:inherit;font-size:.95rem;width:100%;min-height:5rem;resize:vertical;
-  color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:.6rem .7rem;
-}
-textarea:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.arow{display:flex;gap:.5rem;margin-top:.55rem;flex-wrap:wrap;align-items:center}
-.btn{font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:5px;padding:.45rem .8rem;display:inline-flex;gap:.4rem;align-items:center}
-.btn:hover{background:var(--shade)}
-.btn.mic.rec{background:var(--seal);border-color:var(--seal);color:#fff;animation:pulse 1.2s infinite}
-@keyframes pulse{50%{opacity:.62}}
-.btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}
-.btn.ok:hover{background:var(--ok);filter:brightness(1.08)}
-.state{font-size:.82rem;color:var(--muted)}
-.primary{
-  font:inherit;font-size:1rem;font-weight:700;cursor:pointer;width:100%;
-  background:var(--navy);border:1px solid var(--navy);color:#fff;border-radius:6px;padding:.85rem 1.2rem;
-}
-.primary:hover{filter:brightness(1.12)}
-.primary[disabled]{opacity:.5;cursor:not-allowed;filter:none}
-.bar{height:5px;border-radius:999px;background:var(--shade);overflow:hidden;flex:1 1 7rem;min-width:0}
-.bar i{display:block;height:100%;width:0;background:var(--navy);transition:width .25s}
-.railq{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem;flex-wrap:wrap}
-.railq b{font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
-.railq .c{font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;font-size:.9rem}
-.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.8rem;margin-bottom:1.4rem}
-.meta label{display:flex;flex-direction:column;gap:.25rem;font-size:.76rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600;color:var(--muted)}
-.meta input,.meta select{font:inherit;font-size:.95rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:.5rem .6rem;text-transform:none;letter-spacing:0;font-weight:400;width:100%}
-.meta select{cursor:pointer}
-.meta #cabautre{margin-top:.35rem}
-.msg{margin-top:.9rem;font-size:.9rem;padding:.75rem .9rem;border-radius:5px;border:1px solid var(--line);background:var(--shade)}
-.msg.err{border-color:var(--seal);color:var(--seal)}
-.msg.good{border-color:var(--ok);color:var(--ok)}
+
 footer{margin-top:2.6rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
 [hidden]{display:none!important}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -207,13 +154,8 @@ footer{margin-top:2.6rem;padding-top:1rem;border-top:1px solid var(--line);font-
      10 juillet 1965. Chaque copropriétaire vote librement.</p>
 </header>
 
-<nav role="tablist">
-  <button role="tab" id="t-comparatif" aria-selected="true" aria-controls="p-comparatif">Comparatif</button>
-  <button role="tab" id="t-questions" aria-selected="false" aria-controls="p-questions">Questions à poser</button>
-</nav>
 
-<!-- =========================== COMPARATIF =========================== -->
-<section id="p-comparatif" role="tabpanel" aria-labelledby="t-comparatif">
+<section>
 
   <h2>Les quatre propositions</h2>
   <p class="hint">Montants toutes taxes comprises, pour douze mois, hors prestations
@@ -257,8 +199,8 @@ footer{margin-top:2.6rem;padding-top:1rem;border-top:1px solid var(--line);font-
   <p class="hint"><b>Cliquez sur une note</b> pour afficher ce qui la justifie dans le
      contrat. <b>Limite à connaître :</b> un <b>3</b> signifie « correct »
      <i>ou</i> « non documenté au contrat ». Un cabinet dont le contrat est moins détaillé
-     n'est donc ni récompensé ni pénalisé sur ce point. Les questions posées en entretien
-     servent justement à combler ces trous.</p>
+     n'est donc ni récompensé ni pénalisé sur ce point : ces lacunes sont à lever en
+     entretien avec le cabinet.</p>
   <div class="scroller">
     <table class="grille">
       <thead><tr id="gh"></tr></thead>
@@ -275,39 +217,6 @@ footer{margin-top:2.6rem;padding-top:1rem;border-top:1px solid var(--line);font-
   <h2>Classement selon vos critères</h2>
   <div class="rank" id="rank"></div>
 
-</section>
-
-<!-- =========================== QUESTIONS =========================== -->
-<section id="p-questions" role="tabpanel" aria-labelledby="t-questions" hidden>
-
-  <h2>Grille d'entretien</h2>
-  <p class="hint">Choisissez le cabinet rencontré : les encadrés « ce que dit le
-     contrat » s'adaptent à sa proposition, et vos réponses sont conservées séparément
-     pour chacun. Plusieurs questions portent sur des points qu'aucun contrat ne traite —
-     ce sont celles qui apportent le plus. Tout reste sur cet appareil ; rien n'est envoyé
-     ailleurs.</p>
-
-  <div class="meta">
-    <label>Cabinet rencontré
-      <select id="cab"></select>
-      <input type="text" id="cabautre" placeholder="Nom du cabinet" hidden></label>
-    <label>Date de l'entretien
-      <input type="date" id="dte"></label>
-    <label>Entretien mené par
-      <input type="text" id="par" placeholder="Nom"></label>
-  </div>
-
-  <div class="railq">
-    <b>Avancement</b>
-    <div class="bar"><i id="qfill"></i></div>
-    <span class="c" id="qcount">0 / 0</span>
-    <button class="btn" id="wipe">Tout effacer</button>
-  </div>
-
-  <div id="questions"></div>
-
-  <button class="primary" id="dl">Valider le questionnaire et télécharger le PDF</button>
-  <div id="qmsg" hidden></div>
 </section>
 
 <footer>
