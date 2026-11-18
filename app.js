@@ -32,15 +32,11 @@
         "Garantie financière de 1 000 000 €, responsabilité civile professionnelle " +
         "auprès des Lloyd's.",
         "Cabinet installé au Pré-Saint-Gervais, à quelques rues de l'immeuble.",
-        "Le cabinet indique être joignable par téléphone de 9 h à 17 h du lundi au " +
-        "vendredi, soit environ quarante heures par semaine, très au-delà de ce que " +
-        "prévoit son contrat."
+        "Joignable par téléphone de 9 h à 17 h du lundi au vendredi, soit environ " +
+        "quarante heures par semaine."
       ],
       moins: [
-        "Le contrat ne prévoit qu'un accueil téléphonique le lundi et le mardi de 14 h " +
-        "à 17 h, soit six heures par semaine, et aucun engagement de délai de réponse. " +
-        "La disponibilité de 9 h à 17 h du lundi au vendredi annoncée par le cabinet " +
-        "n'y figure pas : tant qu'elle n'est pas écrite, elle n'engage à rien.",
+        "Aucun engagement de délai de réponse inscrit au contrat.",
         "Visites de 30 minutes minimum, sans rapport écrit et hors la présence du " +
         "président du conseil syndical — avec la réserve « sauf demande du conseil " +
         "syndical », qui reste à faire acter.",
@@ -194,7 +190,7 @@
       d: "Amplitude de l'accueil et engagement écrit sur les délais.",
       n: { acgp: 4, matcoop: 5, cpi: 3, slp: 2, matpro: 5 },
       j: {
-        acgp: "Le cabinet indique être joignable par téléphone de 9 h à 17 h du lundi au vendredi, soit environ quarante heures par semaine — l'amplitude la plus large après Matera. Le contrat, lui, ne prévoit que le lundi et le mardi de 14 h à 17 h, et aucun délai de réponse : cette disponibilité reste un engagement verbal, à faire inscrire au contrat.",
+        acgp: "Joignable par téléphone de 9 h à 17 h du lundi au vendredi, soit environ quarante heures par semaine — l'amplitude la plus large après Matera. Aucun délai de réponse n'est en revanche inscrit au contrat.",
         matcoop: "Référent dédié et réponse par courriel sous six heures ouvrées en moyenne.",
         cpi: "Accueil du lundi au vendredi, 9 h-13 h et 14 h-17 h, mais aucun délai de réponse inscrit au contrat.",
         slp: "Accueil téléphonique le matin uniquement, de 9 h 30 à 12 h 30, fermé le samedi.",
