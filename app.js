@@ -32,6 +32,12 @@
         "Garantie financière de 1 000 000 €, responsabilité civile professionnelle " +
         "auprès des Lloyd's.",
         "Cabinet installé au Pré-Saint-Gervais, à quelques rues de l'immeuble.",
+        "Le cabinet est déjà syndic de la copropriété voisine du 5 rue Marceau. Les deux " +
+        "immeubles sont mitoyens et partagent une interface de toiture : en avril 2024, " +
+        "le syndicat du 7 a réglé une recherche d'infiltration provenant d'un solin " +
+        "accessible par notre couverture, pour le compte du voisin. Un syndic commun aux " +
+        "deux copropriétés permettrait de traiter ensemble les interventions qui les " +
+        "concernent toutes les deux et d'en partager les frais — un échafaudage par exemple.",
         "Joignable par téléphone de 9 h à 17 h du lundi au vendredi, soit environ " +
         "quarante heures par semaine."
       ],
