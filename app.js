@@ -24,7 +24,7 @@
         "Les sommes versées par l'assureur au syndic au titre d'un sinistre viennent en " +
         "déduction de sa rémunération : il ne peut pas être payé deux fois. Aucun autre " +
         "contrat ne le prévoit.",
-        "Quatre visites périodiques par an, le nombre le plus élevé des cinq.",
+        "Quatre visites périodiques par an, le nombre le plus élevé des quatre.",
         "Assemblée générale supplémentaire au forfait : 450 € TTC pour deux heures, " +
         "contre 432 à 720 € TTC chez CPI Gestion et 834 € TTC chez SLP Copro.",
         "Mise en demeure d'un tiers 36 € TTC ; constitution d'un dossier avocat ou " +
@@ -132,7 +132,7 @@
         "Pénalités de retard les plus dissuasives : 15 € par jour sur la fiche " +
         "synthétique et sur la transmission des pièces au conseil syndical.",
         "Plage de l'assemblée de 9 h 30 à 20 h : une assemblée en soirée reste au forfait.",
-        "État daté 300 € TTC et opposition sur mutation 90 € TTC, les moins chers des cinq.",
+        "État daté 300 € TTC et opposition sur mutation 90 € TTC, les moins chers des quatre.",
         "Garantie financière GALIAN de 920 000 €.",
         "Le contrat mentionne le numéro d'immatriculation de la copropriété et le nombre " +
         "exact de lots : le dossier a été étudié."
@@ -143,32 +143,12 @@
         "Taux horaire de 108 € TTC, majoré de 40 % en urgence, soit 151,20 € TTC de " +
         "l'heure.",
         "Assemblée générale demandée par un copropriétaire : 834 € TTC, le tarif le plus " +
-        "élevé des cinq.",
+        "élevé des quatre.",
         "Reprise de la comptabilité des exercices non approuvés : 108 € TTC de l'heure " +
         "(article 7.2.1), sans plafond.",
         "Accueil téléphonique le matin uniquement, de 9 h 30 à 12 h 30, fermé le samedi.",
         "La date de la carte professionnelle diffère entre le contrat (2023) et la fiche " +
         "d'information (2026)."
-      ]
-    },
-    {
-      id: "matpro",
-      nom: "Matera professionnel",
-      long: "MATERA — formule professionnelle",
-      prix: 4300,
-      prixTxt: "4 300 € TTC",
-      adr: "10 rue Treilhard, 75008 Paris.",
-      plus: [
-        "Mêmes outils que la formule coopérative : plateforme, référent dédié, " +
-        "comptabilité et suivi juridique.",
-        "Honoraires de mutation, suivi de travaux et immatriculation : 0 €.",
-        "Aucun copropriétaire n'a à exercer la fonction de syndic."
-      ],
-      moins: [
-        "Coût supérieur de 1 820 € par an à la formule coopérative, pour des outils " +
-        "identiques.",
-        "Les mêmes prestations restent en option payante : travaux, impayés, dégâts des " +
-        "eaux, tenue de l'assemblée."
       ]
     }
   ];
@@ -182,11 +162,11 @@
       d: "Montant du forfait de gestion courante, de 2 160 € à 4 300 € TTC.",
       n: { acgp: 5, matcoop: 4, cpi: 3, slp: 1, matpro: 1 },
       j: {
-        acgp: "1 800 € HT, soit 2 160 € TTC par an : le forfait le moins cher des cinq.",
+        acgp: "1 800 € HT, soit 2 160 € TTC par an : le forfait le moins cher des quatre.",
         matcoop: "2 480 € TTC par an, plus 200 € TTC de frais de mise en place la première année.",
-        cpi: "2 650 € HT, soit 3 180 € TTC par an : au milieu des cinq propositions.",
+        cpi: "2 650 € HT, soit 3 180 € TTC par an : au milieu des quatre propositions.",
         slp: "3 500 € HT, soit 4 200 € TTC par an.",
-        matpro: "4 300 € TTC par an : le forfait le plus cher des cinq."
+        matpro: "4 300 € TTC par an : le forfait le plus cher des quatre."
       } },
     { t: "Coût horaire des interventions hors forfait",
       d: "Tarif appliqué au temps passé : 66 € chez ACGP, 108 € chez CPI et SLP, " +
@@ -204,7 +184,7 @@
          "+40 % chez SLP.",
       n: { acgp: 5, matcoop: 2, cpi: 1, slp: 2, matpro: 2 },
       j: {
-        acgp: "Aucune majoration hors heures ouvrables, et les sommes versées par l'assureur viennent en déduction de sa rémunération. Unique parmi les cinq.",
+        acgp: "Aucune majoration hors heures ouvrables, et les sommes versées par l'assureur viennent en déduction de sa rémunération. Unique parmi les quatre.",
         matcoop: "La gestion d'un dégât des eaux est une option facturée à partir de 400 € TTC.",
         cpi: "Tarif horaire majoré de 50 % en urgence, soit 162 € TTC de l'heure.",
         slp: "Tarif horaire majoré de 40 % en urgence, soit 151,20 € TTC de l'heure.",
@@ -237,7 +217,7 @@
         acgp: "« (montant fixé par décret) € par jour de retard » : la mention n'est pas renseignée, la pénalité est inapplicable en pratique.",
         matcoop: "Aucune pénalité chiffrée. La question se pose différemment, le syndic étant un copropriétaire.",
         cpi: "1 € par jour de retard, déduit de sa rémunération : chiffré, donc applicable, mais peu dissuasif.",
-        slp: "15 € par jour de retard : le montant le plus dissuasif des cinq.",
+        slp: "15 € par jour de retard : le montant le plus dissuasif des quatre.",
         matpro: "Aucune pénalité chiffrée dans les éléments transmis."
       } },
     { t: "Frais de mutation imputés aux copropriétaires",
@@ -246,7 +226,7 @@
       j: {
         acgp: "État daté 380 € TTC, soit le plafond légal ; opposition sur mutation 150 € TTC.",
         matcoop: "État daté, pré-état daté et certificat de l'article 20-II à 0 €.",
-        cpi: "État daté 380 € TTC, opposition sur mutation 180 € TTC, certificat article 20-II 150 € TTC : le plus cher des cinq.",
+        cpi: "État daté 380 € TTC, opposition sur mutation 180 € TTC, certificat article 20-II 150 € TTC : le plus cher des quatre.",
         slp: "État daté 300 € TTC et opposition sur mutation 90 € TTC : les moins chers hors Matera.",
         matpro: "Mêmes honoraires de mutation à 0 € que la formule coopérative."
       } },
@@ -257,7 +237,7 @@
         acgp: "Forfait de 450 € TTC pour deux heures, dépassement facturé 132 € TTC de l'heure.",
         matcoop: "Préparation et tenue de l'assemblée en option, à partir de 400 € TTC.",
         cpi: "432 € TTC pour quatre heures en journée, mais 720 € TTC si l'assemblée se tient en soirée.",
-        slp: "834 € TTC pour une assemblée demandée par un copropriétaire : le tarif le plus élevé des cinq.",
+        slp: "834 € TTC pour une assemblée demandée par un copropriétaire : le tarif le plus élevé des quatre.",
         matpro: "Non documenté dans les éléments transmis."
       } },
     { t: "Coût de reprise du dossier",
@@ -277,7 +257,7 @@
       j: {
         acgp: "Le contrat ne comporte aucun engagement particulier sur les commissions ou les sociétés liées.",
         matcoop: "Frais bancaires et assurance du conseil syndical inclus ; tarifs des options publiés.",
-        cpi: "Clause « Concurrence – Éthique » : aucune commission, filiales déclarées, fournisseurs mis en concurrence avec le conseil syndical. Unique parmi les cinq.",
+        cpi: "Clause « Concurrence – Éthique » : aucune commission, filiales déclarées, fournisseurs mis en concurrence avec le conseil syndical. Unique parmi les quatre.",
         slp: "Aucun engagement particulier sur ce point.",
         matpro: "Mêmes engagements que la formule coopérative."
       } },
@@ -305,7 +285,7 @@
       d: "Ce que le forfait couvre réellement au regard de son montant.",
       n: { acgp: 5, matcoop: 5, cpi: 4, slp: 2, matpro: 1 },
       j: {
-        acgp: "2 160 € TTC pour quatre visites par an et les tarifs d'intervention les plus bas des cinq.",
+        acgp: "2 160 € TTC pour quatre visites par an et les tarifs d'intervention les plus bas des quatre.",
         matcoop: "2 480 € TTC avec les mutations, le suivi de travaux et l'immatriculation à 0 €.",
         cpi: "3 180 € TTC, mais avec des visites d'une heure, deux réunions de conseil syndical et la clause éthique.",
         slp: "4 200 € TTC pour deux visites et un accueil réduit à la matinée.",
@@ -354,7 +334,7 @@
   { q: "Combien de copropriétés le gestionnaire qui suivra notre immeuble gère-t-il par " +
        "ailleurs ? Qui le remplace pendant ses congés ou en cas de départ, et comment en " +
        "sommes-nous informés ?",
-    c: { def: "Aucun des cinq contrats ne traite ce point. La charge réelle d'un " +
+    c: { def: "Aucun des quatre contrats ne traite ce point. La charge réelle d'un " +
               "gestionnaire détermine pourtant sa réactivité bien plus sûrement que les " +
               "horaires d'accueil affichés." } },
 
@@ -422,7 +402,7 @@
       cpi: "Rémunération « révisée chaque année à la date anniversaire et selon les " +
            "modalités prévues en assemblée générale ». <b>Ni plafond ni indice.</b>",
       slp: "Le point n'est pas précisé dans les éléments transmis.",
-      matcoop: "Révision annuelle plafonnée à 5 % par an : le seul des cinq à poser une " +
+      matcoop: "Révision annuelle plafonnée à 5 % par an : le seul des quatre à poser une " +
                "limite écrite.",
       matpro: "Révision annuelle plafonnée à 5 % par an."
     } },
@@ -466,7 +446,7 @@
             "inapplicable.</b>",
       cpi: "1 € par jour de retard, déduit de la rémunération : chiffré, donc " +
            "applicable, mais peu dissuasif.",
-      slp: "15 € par jour de retard : le montant le plus dissuasif des cinq.",
+      slp: "15 € par jour de retard : le montant le plus dissuasif des quatre.",
       matcoop: "Aucune pénalité chiffrée dans les éléments transmis.",
       matpro: "Aucune pénalité chiffrée dans les éléments transmis."
     } },
@@ -494,7 +474,7 @@
       acgp: "<b>Le contrat ne comporte aucun engagement sur ce point.</b>",
       cpi: "Clause « Concurrence – Éthique » : engagement à ne percevoir aucune " +
            "commission, à déclarer ses filiales et à mettre les fournisseurs en " +
-           "concurrence avec le conseil syndical. <b>Unique parmi les cinq.</b>",
+           "concurrence avec le conseil syndical. <b>Unique parmi les quatre.</b>",
       slp: "<b>Le contrat ne comporte aucun engagement sur ce point.</b>",
       matcoop: NON_DOC,
       matpro: NON_DOC
