@@ -106,8 +106,9 @@ button.cell.sel{border-color:var(--navy);box-shadow:0 0 0 2px var(--navy)}
 .cell.n2{background:rgba(142,47,60,.10);color:var(--seal)}
 .cell.n1{background:rgba(142,47,60,.20);color:var(--seal)}
 .cell.n0{background:rgba(142,47,60,.32);color:var(--seal)}
-.legend{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center;font-size:.82rem;color:var(--muted);margin:.2rem 0 1rem}
-.legend span{display:inline-flex;gap:.35rem;align-items:center}
+.legend{display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;font-size:.82rem;color:var(--muted);margin:.2rem 0 1.1rem}
+.legend span{display:flex;gap:.55rem;align-items:center}
+.legend .cell{flex:0 0 auto}
 .bulle{
   position:fixed;z-index:60;max-width:min(24rem,calc(100vw - 24px));
   background:var(--surface);color:var(--ink);border:1px solid var(--navy);border-radius:10px;
